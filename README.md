@@ -47,13 +47,16 @@ git clone https://github.com/YOUR_USERNAME/socialMedia.git
 cd socialMedia
 
 npm install
-
+```
 
 3. 🛢️ Set up PostgreSQL
 Create a local database using psql and name it socialapp
 
 Run the schema script:
+
+```bash
 psql -d YOUR_DB_NAME -f models/schema.sql
+```
 
 Create a .env file and add your database credentials:
 
