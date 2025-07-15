@@ -181,6 +181,28 @@ async function hasLikedPost(userId, postId) {
   return rows.length > 0;
 }
 
+// update user
+
+async function updateUserById(id, userData) {
+  const { username, email, password, first_name, last_name, age } = userData;
+
+  console.log("📝 Running updateUserById query...");
+
+  await pool.query(
+    `UPDATE users SET
+      username=$1,
+      email=$2,
+      password=COALESCE(NULLIF($3, ''), password),
+      first_name=$4,
+      last_name=$5,
+      age=$6
+     WHERE id=$7`,
+    [username, email, password || "", first_name, last_name, age, id]
+  );
+
+  console.log("✅ Database updated for user ID:", id);
+}
+
 module.exports = {
   getUserByUsername,
   getUserByEmail,
@@ -200,4 +222,5 @@ module.exports = {
   likePost,
   unlikePost,
   hasLikedPost,
+  updateUserById,
 };

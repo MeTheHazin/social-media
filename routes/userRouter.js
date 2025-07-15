@@ -8,11 +8,13 @@ const {
   isAuth,
   isOwend,
 } = require("../middleware/authenticationsAndauthorization");
+
+const bcrypt = require("bcryptjs");
 // sign in logics
 
 userRouter.get("/user/sign-up", async (req, res) => {
   try {
-    res.render("sign-up", { errors: [] }); // 👈 this avoids the EJS crash
+    res.render("sign-up", { errors: [] });
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -207,5 +209,126 @@ userRouter.get("/user/:id/following", isAuth, async (req, res) => {
     res.status(500).send("Couldn't fetch following.");
   }
 });
+
+// edithe profile data
+
+userRouter.get("/user/:id/edit", isAuth, async (req, res) => {
+  try {
+    const user = (await db.getUserById(req.params.id))[0];
+    if (req.user.id !== user.id) return res.status(403).send("Access denied.");
+
+    res.render("editProfile", { user, errors: [] });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error loading edit form.");
+  }
+});
+
+// userRouter.post(
+//   "/user/:id/edit",
+//   isAuth,
+//   signUpValidation,
+//   async (req, res) => {
+//     console.log("🔧 POST /user/:id/edit triggered");
+//     console.log("req.body:", req.body);
+
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//       const user = (await db.getUserById(req.params.id))[0];
+//       return res
+//         .status(400)
+//         .render("editProfile", { user, errors: errors.array() });
+//     }
+
+//     try {
+//       const { username, email, password, first_name, last_name, age } =
+//         req.body;
+
+//       let hashedPassword = null;
+//       if (password && password.trim() !== "") {
+//         hashedPassword = await bcrypt.hash(password.trim(), 10);
+//       }
+
+//       if (req.user.id !== parseInt(req.params.id, 10))
+//         return res.status(403).send("Unauthorized.");
+
+//       await db.updateUserById(req.params.id, {
+//         username: username.trim().toLowerCase(),
+//         email: email.trim().toLowerCase(),
+//         password: hashedPassword ? hashedPassword.trim() : null,
+//         first_name: first_name.trim().toLowerCase(),
+//         last_name: last_name.trim().toLowerCase(),
+//         age: parseInt(age, 10),
+//       });
+//       console.log("User updated successfully");
+
+//       res.send("Profile updated! Redirect would normally go here.");
+//     } catch (err) {
+//       console.error("Update error:", err);
+//       res.status(500).send("Could not update user.");
+//     }
+//   }
+// );
+
+userRouter.post(
+  "/user/:id/edit",
+  isAuth,
+  signUpValidation,
+  async (req, res) => {
+    console.log("🔧 POST /user/:id/edit triggered");
+    console.log("req.body:", req.body);
+
+    // Validate inputs
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const user = (await db.getUserById(req.params.id))[0];
+      return res
+        .status(400)
+        .render("editProfile", { user, errors: errors.array() });
+    }
+
+    try {
+      const { username, email, password, first_name, last_name, age } =
+        req.body;
+
+      // Ownership check
+      const userId = parseInt(req.params.id, 10);
+      if (req.user.id !== userId) {
+        return res.status(403).send("Unauthorized.");
+      }
+
+      // Hash password if provided
+      let hashedPassword = null;
+      if (password && password.trim() !== "") {
+        hashedPassword = await bcrypt.hash(password.trim(), 10);
+      }
+
+      // Call DB update method
+      await db.updateUserById(userId, {
+        username: username.trim().toLowerCase(),
+        email: email.trim().toLowerCase(),
+        password: hashedPassword || "", // Keep existing password if field left blank
+        first_name: first_name.trim().toLowerCase(),
+        last_name: last_name.trim().toLowerCase(),
+        age: parseInt(age, 10),
+      });
+
+      console.log("✅ User updated successfully");
+
+      // Refresh session with updated user info
+      const updatedUser = (await db.getUserById(userId))[0];
+      req.login(updatedUser, (err) => {
+        if (err) {
+          console.error("🚨 Re-login error:", err);
+          return res.status(500).send("Session refresh failed.");
+        }
+        res.redirect(`/user/${userId}/profile`);
+      });
+    } catch (err) {
+      console.error("Update error:", err);
+      res.status(500).send("Could not update user.");
+    }
+  }
+);
 
 module.exports = userRouter;

@@ -10,6 +10,7 @@ const pool = require("../models/pool");
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
+      username = username.toLowerCase();
       let user = await db.getUserByUsername(username);
       user = user[0];
       if (!user) {

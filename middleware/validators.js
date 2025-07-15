@@ -4,6 +4,7 @@ const db = require("../models/query");
 const signUpValidation = [
   body("username")
     .trim()
+    .isLowercase()
     .isLength({ min: 3 })
     .withMessage("Username must be at least 3 characters")
     .custom(async (value) => {

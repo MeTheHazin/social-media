@@ -1,42 +1,147 @@
-/* Shared Page Styling */
-body {
+/* Reset */
+* {
   margin: 0;
-  padding: 2rem;
-  font-family: "Segoe UI", Tahoma, sans-serif;
-  background-color: #f4fbf4;
-  color: #2d2d2d;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Headings */
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: linear-gradient(to bottom right, #e6fff5, #f2fcff);
+  color: #333;
+  padding: 3rem;
+  min-height: 100vh;
+}
+
+/* Headings & Links */
 h1,
 h2,
 h3 {
-  color: #339933;
-  margin-bottom: 1rem;
+  color: #2c9f2c;
+  margin-bottom: 1.2rem;
+  animation: fadeInDown 0.7s ease both;
 }
 
 a {
-  color: #2a9d2a;
+  color: #2185d5;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
+  color: #1b6ec2;
   text-decoration: underline;
 }
 
-/* Form Container */
+/* Form Styling */
 form {
-  background-color: #ffffff;
+  background: #ffffff;
   border: 1px solid #cceccc;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  max-width: 600px;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 700px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
   margin-bottom: 2rem;
-  animation: fadeIn 0.6s ease both;
+  animation: fadeInUp 0.6s ease both;
 }
 
-@keyframes fadeIn {
+form div {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #228822;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #a8dba8;
+  border-radius: 6px;
+  background-color: #f7fff7;
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  border-color: #2c9f2c;
+  outline: none;
+}
+
+/* Button */
+button {
+  background-color: #2c9f2c;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #228822;
+}
+
+/* Messages */
+.errors ul {
+  background-color: #fff0f0;
+  border: 1px solid #cc4444;
+  color: #cc0000;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.05);
+}
+
+.errors li {
+  margin-bottom: 0.5rem;
+}
+
+.success-message {
+  color: #228822;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* List Items */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #ffffff;
+  border: 1px solid #d0f0d0;
+  padding: 1.2rem;
+  border-radius: 10px;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  animation: fadeInUp 0.4s ease both;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+li:hover {
+  transform: scale(1.01);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+li strong {
+  display: block;
+  font-size: 1rem;
+  color: #2f7f2f;
+  margin-bottom: 0.4rem;
+}
+
+/* Animations */
+@keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -47,84 +152,13 @@ form {
   }
 }
 
-form div {
-  margin-bottom: 1rem;
-}
-
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"] {
-  width: 100%;
-  padding: 0.6rem;
-  border: 1px solid #a8dba8;
-  border-radius: 5px;
-  background-color: #f0fff0;
-  box-sizing: border-box;
-}
-
-/* Button Styling */
-button {
-  background-color: #3aa63a;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-button:hover {
-  background-color: #2c882c;
-}
-
-/* Messages */
-.errors ul {
-  background-color: #ffefef;
-  border: 1px solid #cc3333;
-  padding: 1rem;
-  border-radius: 8px;
-  color: #cc0000;
-  max-width: 500px;
-}
-
-.errors li {
-  margin-bottom: 0.5rem;
-}
-
-.success-message {
-  color: green;
-  margin-bottom: 1rem;
-}
-
-/* Search Results & Follow List */
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  background-color: #ffffff;
-  border: 1px solid #d2f0d2;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s ease;
-}
-
-li:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-li strong {
-  display: block;
-  font-weight: bold;
-  color: #2f7f2f;
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
