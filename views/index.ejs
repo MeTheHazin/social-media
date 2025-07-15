@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Main Page</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <% if (user) { %>
+      <form action="/user/search" method="get">
+        <label for="search">Search for users:</label>
+        <input
+          type="text"
+          id="search"
+          name="q"
+          placeholder="Enter username, first name, or email"
+          required
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      <h2>Welcome, <%= user.username %></h2>
+      <a href="/user/<%=user.id%>/profile"> profile</a>
+      <p>Email: <%= user.email %></p>
+      <form action="/user/log-out" method="post">
+        <button type="submit">log out</button>
+      </form>
+
+      <form action="/post/<%= user.id %>/createpost" method="post">
+        <label for="post">tell us what is in your mind: </label>
+        <textarea name="post" id="post"></textarea>
+        <button type="submit">share</button>
+      </form>
+
+      <section>
+        <h3>Your Feed</h3>
+        <% if (posts.length === 0) { %>
+        <p>No posts to display yet.</p>
+        <% } else { %>
+        <div>
+          <% posts.forEach(post => { %>
+          <div>
+            <strong><%= post.username %></strong>
+            <p><%= post.message %></p>
+            <small
+              >Posted on <%= new Date(post.created_at).toLocaleDateString()
+              %></small
+            >
+            <p>Likes: <%= post.likes %></p>
+            <% if (post.hasLiked) { %>
+            <form action="/post/<%= post.id %>/unlike" method="post">
+              <button type="submit">Unlike</button>
+            </form>
+            <% } else { %>
+            <form action="/post/<%= post.id %>/like" method="post">
+              <button type="submit">Like</button>
+            </form>
+            <% } %>
+          </div>
+          <% }) %>
+        </div>
+        <% } %>
+      </section>
+
+      <% } else { %>
+      <h2>
+        Please <a href="/user/log-in">log in</a> or
+        <a href="/user/sign-up">sign up</a> to continue
+      </h2>
+      <% } %>
+    </header>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>log in</title>
+    <link rel="stylesheet" href="/restPages.css" />
+  </head>
+  <body>
+    <div>
+      <% if (showSuccess) {%>
+      <h2 style="color: green">
+        you signed up successfuly. no log in like a champ
+      </h2>
+      <% } %> <% if (showFailure) {%>
+      <h2 style="color: red">nah. try agian. something's not right here</h2>
+
+      <%}%>
+    </div>
+    <form action="/user/log-in" method="POST">
+      <div>
+        <label for="username">Username: </label>
+        <input type="text" id="username" name="username" required />
+      </div>
+      <div>
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="password" required />
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+/* styles.css */
+
+/* Reset & Base Layout */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4fbf4;
+  color: #2d2d2d;
+  line-height: 1.6;
+}
+
+/* Full-Width Container */
+header {
+  width: 100%;
+  padding: 2rem;
+  background-color: #e3fce3;
+  border-bottom: 2px solid #b2e5b2;
+}
+
+/* Navigation & Typography */
+h2,
+h3 {
+  color: #3aa63a;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #2a9d2a;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Form Styling */
+form {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  max-width: 600px;
+  padding: 0.6rem;
+  border: 1px solid #a8dba8;
+  border-radius: 5px;
+  background-color: #f0fff0;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #3aa63a;
+  outline: none;
+}
+
+button {
+  background-color: #3aa63a;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #339933;
+}
+
+/* Posts Section - Full Width Grid */
+section {
+  padding: 2rem;
+  background-color: #f0fff5;
+}
+
+section > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Individual Post Styling */
+section > div > div {
+  background-color: #ffffff;
+  border: 1px solid #d2f0d2;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  animation: fadeInUp 0.5s ease both;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section > div > div:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Post Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+strong {
+  color: #2f7f2f;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+small {
+  color: #666;
+  font-size: 0.85rem;
+}

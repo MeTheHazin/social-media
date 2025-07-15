@@ -1,0 +1,130 @@
+/* Shared Page Styling */
+body {
+  margin: 0;
+  padding: 2rem;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background-color: #f4fbf4;
+  color: #2d2d2d;
+}
+
+/* Headings */
+h1,
+h2,
+h3 {
+  color: #339933;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #2a9d2a;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Form Container */
+form {
+  background-color: #ffffff;
+  border: 1px solid #cceccc;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.6s ease both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+form div {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #a8dba8;
+  border-radius: 5px;
+  background-color: #f0fff0;
+  box-sizing: border-box;
+}
+
+/* Button Styling */
+button {
+  background-color: #3aa63a;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #2c882c;
+}
+
+/* Messages */
+.errors ul {
+  background-color: #ffefef;
+  border: 1px solid #cc3333;
+  padding: 1rem;
+  border-radius: 8px;
+  color: #cc0000;
+  max-width: 500px;
+}
+
+.errors li {
+  margin-bottom: 0.5rem;
+}
+
+.success-message {
+  color: green;
+  margin-bottom: 1rem;
+}
+
+/* Search Results & Follow List */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #ffffff;
+  border: 1px solid #d2f0d2;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+li:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+li strong {
+  display: block;
+  font-weight: bold;
+  color: #2f7f2f;
+}

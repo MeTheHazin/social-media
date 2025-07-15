@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= user.username %>'s Profile</title>
+<link rel="stylesheet" href="/profile.css" />
+
+  </head>
+  <body>
+    <div class="main">
+      <h1><%= user.username %></h1>
+      <h3><a href="/">home</a></h3>
+
+      <% if (userPosts.length === 0) { %>
+      <p>No posts yet.</p>
+      <% } else { %> <% userPosts.forEach(post => { %>
+      <div class="post">
+        <p><%= post.message %></p>
+        <small
+          >Posted on <%= new Date(post.created_at).toLocaleDateString()
+          %></small
+        >
+        <p>Likes: <%= post.likes %></p>
+
+        
+        <% if (user.id === loggedInUser.id) { %>
+        <form action="/post/<%= post.id %>/delete" method="post">
+          <button type="submit">Delete Post</button>
+        </form>
+        <% } %>
+      </div>
+      <% }) %> <% } %>
+    </div>
+
+    <div class="sidebar">
+      <h3>User Info</h3>
+      <p><strong>Name:</strong> <%= user.first_name %> <%= user.last_name %></p>
+      <p><strong>Username:</strong> <%= user.username %></p>
+      <p><strong>Email:</strong> <%= user.email %></p>
+      <p><strong>Age:</strong> <%= user.age %></p>
+      <p><strong>Followers:</strong> 
+  <a href="/user/<%= user.id %>/followers">View</a>
+</p>
+<p><strong>Following:</strong> 
+  <a href="/user/<%= user.id %>/following">View</a>
+</p>
+
+      <% if (user.id !== loggedInUser.id) { %>
+      <form
+        action="/user/<%= user.id %>/<%= isFollowing ? 'unfollow' : 'follow' %>"
+        method="post"
+      >
+        <button type="submit">
+          <%= isFollowing ? 'Unfollow' : 'Follow' %>
+        </button>
+      </form>
+      <% } %> <% if (user.id === loggedInUser.id) {%>
+<form action="/user/<%= user.id %>/delete" method="post" onsubmit="return confirmDelete()">
+  <button type="submit" class="delete-btn">Delete Profile</button>
+</form>
+
+<script>
+  function confirmDelete() {
+    return confirm("Are you sure you want to permanently delete your account and all related content?");
+  }
+</script>
+
+
+        <%} %>
+      </form>
+    </div>
+  </body>
+</html>

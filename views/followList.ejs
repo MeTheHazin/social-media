@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/restPages.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <h3><a href="/">Home</a></h3>
+    <% if (users.length === 0) { %>
+    <p>No users found.</p>
+    <% } else { %>
+    <ul>
+      <% users.forEach(u => { %>
+      <li><a href="/user/<%= u.id %>/profile"><%= u.username %></a></li>
+      <% }) %>
+    </ul>
+    <% } %>
+  </body>
+</html>

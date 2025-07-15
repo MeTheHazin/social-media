@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Search Results for "<%= query %>"</title>
+    <link rel="stylesheet" href="/restPages.css" />
+  </head>
+  <body>
+    <h1>Search Results</h1>
+
+    <% if (results.length === 0) { %>
+    <p>No users found.</p>
+    <% } else { %>
+    <ul>
+      <% results.forEach(user => { %>
+      <li>
+        <strong><%= user.username %></strong> - <%= user.email %><br />
+        <a href="/user/<%= user.id %>/profile">View Profile</a>
+      </li>
+      <% }) %>
+    </ul>
+    <% } %>
+  </body>
+</html>
