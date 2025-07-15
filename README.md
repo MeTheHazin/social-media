@@ -9,19 +9,19 @@ Whether you're browsing user profiles, liking posts, or connecting with others, 
 
 ---
 
-## 🚀 Features
+## Features
 
-- 🔒 Secure **sign up / log in** system with Passport.js local strategy
-- 📝 Create and share text-based posts
-- ❤️ Like posts by other users
-- 👥 Follow and unfollow users
-- 🔍 Search for users by name
-- 🖼️ Grid-based user feed and profile views
-- 📐 Modular architecture with clean middleware and SQL queries
+-  Secure **sign up / log in** system with Passport.js local strategy
+-  Create and share text-based posts
+- ❤ Like posts by other users
+-  Follow and unfollow users
+-  Search for users by name
+-  Grid-based user feed and profile views
+-  Modular architecture with clean middleware and SQL queries
 
 ---
 
-## 🧠 Tech Stack
+##  Tech Stack
 
 | Category       | Tools Used                          |
 |----------------|-------------------------------------|
@@ -40,7 +40,7 @@ Whether you're browsing user profiles, liking posts, or connecting with others, 
 
 Want to test it locally or build on it? Here's how to clone and run:
 
-### 1. 📥 Clone the repo
+### 1. Clone the repo
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/socialMedia.git
@@ -49,7 +49,7 @@ cd socialMedia
 npm install
 ```
 
-3. 🛢️ Set up PostgreSQL
+3. Set up PostgreSQL
 Create a local database using psql and name it socialapp
 
 Run the schema script:
@@ -63,3 +63,4 @@ Create a .env file and add your database credentials:
 CONNECTION_STRING="postgresql://<you-username>:<you=password>@localhost:5432/socialapp"
 SESSION_SECRET=some_secret_string
   
+good. now you can use it in you local machine. have a amazing day.
