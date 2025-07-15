@@ -3,7 +3,7 @@
 
 # 🌐 Minimalist Social Media Web App
 
-A clean, full-stack social media platform built with **Node.js**, **Express**, **PostgreSQL**, **EJS**, and **Passport.js (local strategy)**. Designed with simplicity in mind, this app brings together key features of classic social platforms—**authentication**, **posting**, **likes**, **follows**, and **search**. while maintaining clarity in architecture and UI.
+A clean, full-stack social media platform built with **Node.js**, **Express**, **PostgreSQL**, **EJS**, and **Passport.js (local strategy)**. Designed with simplicity in mind, this app brings together key features of classic social platforms. **authentication**, **posting**, **likes**, **follows**, and **search**. while maintaining clarity in architecture and UI.
 
 Whether you're browsing user profiles, liking posts, or connecting with others, everything feels intuitive and purposefully minimal.
 
